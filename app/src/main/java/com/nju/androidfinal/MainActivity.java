@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 import com.nju.androidfinal.Video.API;
 import com.nju.androidfinal.Video.VideoAdapter;
 import com.nju.androidfinal.Video.VideoInfo;
-import com.nju.androidfinal.Video.VideoListActivity;
+import com.nju.androidfinal.VideoList.VideoListActivity;
 
 import java.util.List;
 
