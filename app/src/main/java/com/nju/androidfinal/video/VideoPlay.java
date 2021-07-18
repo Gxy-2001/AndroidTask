@@ -1,4 +1,4 @@
-package com.nju.androidfinal.Video;
+package com.nju.androidfinal.video;
 
 import android.content.Intent;
 import android.os.Bundle;

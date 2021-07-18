@@ -1,4 +1,4 @@
-package com.nju.androidfinal.Video;
+package com.nju.androidfinal.video;
 
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.internal.LinkedTreeMap;

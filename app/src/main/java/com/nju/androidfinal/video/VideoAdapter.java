@@ -1,4 +1,4 @@
-package com.nju.androidfinal.Video;
+package com.nju.androidfinal.video;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
@@ -196,13 +196,11 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
 
         //点击心形时出发的动画
         void heartClickAnimation() {
-            ObjectAnimator animatorX = ObjectAnimator.ofFloat(heart,
-                    "scaleX", 1f, 2f);
+            ObjectAnimator animatorX = ObjectAnimator.ofFloat(heart, "scaleX", 1f, 2f);
             animatorX.setRepeatCount(1);
             animatorX.setInterpolator(new LinearInterpolator());
             animatorX.setRepeatMode(ValueAnimator.REVERSE);
-            ObjectAnimator animatorY = ObjectAnimator.ofFloat(heart,
-                    "scaleY", 1f, 2f);
+            ObjectAnimator animatorY = ObjectAnimator.ofFloat(heart, "scaleY", 1f, 2f);
             animatorX.setDuration(500);
             animatorY.setRepeatCount(1);
             animatorY.setInterpolator(new LinearInterpolator());

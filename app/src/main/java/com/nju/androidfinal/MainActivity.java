@@ -10,10 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.gson.Gson;
-import com.nju.androidfinal.Video.API;
-import com.nju.androidfinal.Video.Video;
-import com.nju.androidfinal.Video.VideoAdapter;
-import com.nju.androidfinal.VideoList.VideoListActivity;
+import com.nju.androidfinal.video.API;
+import com.nju.androidfinal.video.Video;
+import com.nju.androidfinal.video.VideoAdapter;
+import com.nju.androidfinal.videoList.VideoListActivity;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
     private ViewPager2 videoPager;
     private VideoAdapter videoAdapter;
-    private TextView listPager;
+    private TextView listButton;
     private TextView me;
     private List<Video> videoInfoList;
 
@@ -36,19 +36,21 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        //viewPager2和它的Adapter
         videoPager = findViewById(R.id.video_pager);
         videoAdapter = new VideoAdapter(this);
+        setData();
+        videoPager.setAdapter(videoAdapter);
+
         me = findViewById(R.id.me);
-        listPager = findViewById(R.id.recycler);
         me.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(MainActivity.this, "我的页面：可以上传视频和查看自己上传的视频，登录注册收藏", Toast.LENGTH_SHORT).show();
             }
         });
-        //到视频列的跳转
-        listPager.setOnClickListener(new View.OnClickListener() {
+        listButton = findViewById(R.id.listrecycler);
+
+        listButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, VideoListActivity.class);
@@ -59,15 +61,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        setData();
-        videoPager.setAdapter(videoAdapter);
-    }
 
-    @Override
-    protected void onResume() {
-        //实现全屏
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN);
-        super.onResume();
     }
 
 

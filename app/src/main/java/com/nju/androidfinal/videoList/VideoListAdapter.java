@@ -1,4 +1,4 @@
-package com.nju.androidfinal.VideoList;
+package com.nju.androidfinal.videoList;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,8 +15,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 import com.nju.androidfinal.R;
-import com.nju.androidfinal.Video.Video;
-import com.nju.androidfinal.Video.VideoPlay;
+import com.nju.androidfinal.video.Video;
+import com.nju.androidfinal.video.VideoPlay;
 
 import java.util.List;
 
