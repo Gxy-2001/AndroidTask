@@ -2,7 +2,6 @@ package com.nju.androidfinal.Video;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
@@ -16,7 +15,7 @@ import java.util.List;
 
 public class VideoPlay extends AppCompatActivity {
 
-    private List<VideoInfo> videoInfos;
+    private List<Video> videoInfos;
     private ViewPager2 videoPager;
     private VideoAdapter videoAdapter;
 
@@ -32,12 +31,11 @@ public class VideoPlay extends AppCompatActivity {
         int flag = 0;
         if (maps != null) {
             for (LinkedTreeMap map : maps) {
-                Log.d("map", String.valueOf(map));
                 if (feedurl.equals(map.get("feedurl"))) {
                     flag = 1;
                 }
                 if (flag == 1) {
-                    VideoInfo videoInfo = new VideoInfo(map);
+                    Video videoInfo = new Video(map);
                     videoInfos.add(videoInfo);
                 }
             }

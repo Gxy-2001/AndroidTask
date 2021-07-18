@@ -3,7 +3,7 @@ package com.nju.androidfinal.Video;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.internal.LinkedTreeMap;
 
-public class VideoInfo {
+public class Video {
     @SerializedName("_id")
     public String id;
     @SerializedName("feedurl")
@@ -17,7 +17,7 @@ public class VideoInfo {
     @SerializedName("avatar")
     public String avatar;
 
-    public VideoInfo(LinkedTreeMap map) {
+    public Video(LinkedTreeMap map) {
         this.id = (String) map.get("id");
         this.feedurl = (String) map.get("feedurl");
         this.nickname = (String) map.get("nickname");

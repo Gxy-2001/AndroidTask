@@ -30,12 +30,11 @@ import java.util.List;
 public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHolder> {
 
     private final Context context;
-    private List<VideoInfo> videoInfoList;
+    private List<Video> videoInfoList;
 
     public VideoAdapter(Context context) {
         this.context = context;
     }
-
 
     //ViewHolder创建时调用，用LayoutInflater将元素创建出来
     @NonNull
@@ -49,7 +48,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
     @SuppressLint("DefaultLocale")
     @Override
     public void onBindViewHolder(@NonNull VideoViewHolder videoViewHolder, int i) {
-        final VideoInfo videoInfo = videoInfoList.get(i);
+        final Video videoInfo = videoInfoList.get(i);
 
         //设置各个组件
         videoViewHolder.videoView.setVisibility(View.GONE);
@@ -164,7 +163,6 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
                     if (like) {
                         like = false;
                         heart.setBackground(context.getResources().getDrawable(R.drawable.ic_white_heart));
-                        //如果不是以XX.Xw的形式展示的话，将likeCount减一
                         if (likeCountStr.charAt(likeCountStr.length() - 1) != 'w') {
                             likeCount.setText(String.valueOf(Integer.parseInt(likeCountStr) - 1));
                         }
@@ -224,7 +222,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
 
     }
 
-    public void setVideoInfoList(List<VideoInfo> videoInfoList) {
+    public void setVideoInfoList(List<Video> videoInfoList) {
         this.videoInfoList = videoInfoList;
     }
 

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
 import com.nju.androidfinal.R;
-import com.nju.androidfinal.Video.VideoInfo;
+import com.nju.androidfinal.Video.Video;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -21,7 +21,7 @@ public class VideoListActivity extends AppCompatActivity {
     private RecyclerView rv_video_list;
     private VideoListAdapter itemAdapter;
     private LinearLayoutManager layoutManager;
-    private List<VideoInfo> videoInfos;
+    private List<Video> videoInfos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +35,7 @@ public class VideoListActivity extends AppCompatActivity {
         videoInfos = new LinkedList<>();
         if(maps != null) {
             for (LinkedTreeMap map: maps) {
-                VideoInfo videoInfo = new VideoInfo(map);
+                Video videoInfo = new Video(map);
                 videoInfos.add(videoInfo);
             }
         }

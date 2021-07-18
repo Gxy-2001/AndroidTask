@@ -7,5 +7,5 @@ import retrofit2.http.GET;
 
 public interface API {
     @GET("api/invoke/video/invoke/video")
-    Call<List<VideoInfo>> getVideoInfo();
+    Call<List<Video>> getVideoInfo();
 }

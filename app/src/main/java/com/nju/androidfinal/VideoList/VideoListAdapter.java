@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 import com.nju.androidfinal.R;
-import com.nju.androidfinal.Video.VideoInfo;
+import com.nju.androidfinal.Video.Video;
 import com.nju.androidfinal.Video.VideoPlay;
 
 import java.util.List;
@@ -23,7 +23,7 @@ import java.util.List;
 public class VideoListAdapter extends RecyclerView.Adapter<VideoListAdapter.VideoViewHolder> {
 
     private Context context;
-    private List<VideoInfo> videoInfos;
+    private List<Video> videoInfos;
 
     public VideoListAdapter(Context context){
         this.context = context;
@@ -42,7 +42,7 @@ public class VideoListAdapter extends RecyclerView.Adapter<VideoListAdapter.Vide
     @Override
     public void onBindViewHolder(@NonNull VideoViewHolder holder, int position) {
 
-        VideoInfo videoInfo = videoInfos.get(position);
+        Video videoInfo = videoInfos.get(position);
 
         holder.description.setText(videoInfo.description);
         Glide.with(context)
@@ -74,7 +74,7 @@ public class VideoListAdapter extends RecyclerView.Adapter<VideoListAdapter.Vide
         return videoInfos == null ? 0 : videoInfos.size();
     }
 
-    public void setVideoInfoList(List<VideoInfo> videoInfos) {
+    public void setVideoInfoList(List<Video> videoInfos) {
         this.videoInfos = videoInfos;
     }
 
