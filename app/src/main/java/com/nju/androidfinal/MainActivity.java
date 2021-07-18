@@ -11,8 +11,8 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.gson.Gson;
 import com.nju.androidfinal.Video.API;
-import com.nju.androidfinal.Video.VideoAdapter;
 import com.nju.androidfinal.Video.Video;
+import com.nju.androidfinal.Video.VideoAdapter;
 import com.nju.androidfinal.VideoList.VideoListActivity;
 
 import java.util.List;
@@ -33,8 +33,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //实现全屏
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_main);
 
         //viewPager2和它的Adapter

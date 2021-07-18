@@ -16,7 +16,9 @@
         android:theme="@style/Theme.AndroidFinal"
         android:usesCleartextTraffic="true">
         <activity android:name=".Video.VideoPlay" />
-        <activity android:name=".VideoList.VideoListActivity" />
+        <activity android:name=".VideoList.VideoListActivity"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"

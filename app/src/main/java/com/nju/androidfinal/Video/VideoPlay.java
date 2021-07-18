@@ -40,7 +40,7 @@ public class VideoPlay extends AppCompatActivity {
                 }
             }
         }
-        setContentView(R.layout.video_play);
+        setContentView(R.layout.activity_videoplay);
         videoPager = findViewById(R.id.video_pager);
         videoAdapter = new VideoAdapter(this);
         videoPager.setAdapter(videoAdapter);

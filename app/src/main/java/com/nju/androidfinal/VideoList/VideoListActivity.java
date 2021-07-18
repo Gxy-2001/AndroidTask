@@ -3,6 +3,7 @@ package com.nju.androidfinal.VideoList;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Window;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,9 +23,11 @@ public class VideoListActivity extends AppCompatActivity {
     private VideoListAdapter itemAdapter;
     private LinearLayoutManager layoutManager;
     private List<Video> videoInfos;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_video_list);
 
         Intent intent = getIntent();
@@ -33,8 +36,8 @@ public class VideoListActivity extends AppCompatActivity {
         List<LinkedTreeMap> maps = gson.fromJson(list, List.class);
         Log.d("videoInfos", String.valueOf(videoInfos));
         videoInfos = new LinkedList<>();
-        if(maps != null) {
-            for (LinkedTreeMap map: maps) {
+        if (maps != null) {
+            for (LinkedTreeMap map : maps) {
                 Video videoInfo = new Video(map);
                 videoInfos.add(videoInfo);
             }

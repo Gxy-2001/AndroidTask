@@ -50,11 +50,6 @@ public class VideoListAdapter extends RecyclerView.Adapter<VideoListAdapter.Vide
                 .load(videoInfo.getFeedurl())
                 .centerCrop()
                 .into(holder.imageView1);
-        Glide.with(context)
-                .setDefaultRequestOptions(new RequestOptions().frame(3000000))
-                .load(videoInfo.getFeedurl())
-                .centerCrop()
-                .into(holder.imageView2);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,12 +76,10 @@ public class VideoListAdapter extends RecyclerView.Adapter<VideoListAdapter.Vide
     public class VideoViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView imageView1;
-        private ImageView imageView2;
         private TextView description;
         public VideoViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView1 = itemView.findViewById(R.id.image1);
-            imageView2 = itemView.findViewById(R.id.image2);
             description = itemView.findViewById(R.id.description);
         }
     }

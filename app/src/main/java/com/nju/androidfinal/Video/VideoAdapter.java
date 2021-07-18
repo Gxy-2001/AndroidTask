@@ -53,7 +53,6 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
         //设置各个组件
         videoViewHolder.videoView.setVisibility(View.GONE);
         videoViewHolder.previewImage.setVisibility(View.VISIBLE);
-        videoViewHolder.playButton.setVisibility(View.VISIBLE);
         videoViewHolder.loadingBar.setVisibility(View.GONE);
         videoViewHolder.description.setText(videoInfo.description);
         videoViewHolder.nickname.setText(videoInfo.nickname);
@@ -92,7 +91,6 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
         TextView heart;
         ImageView avatar;
         ImageView previewImage;
-        ImageView playButton;
         VideoView videoView;
         RelativeLayout videoItem;
         View loadingBar;
@@ -110,7 +108,6 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
             heart = itemView.findViewById(R.id.heart);
             previewImage = itemView.findViewById(R.id.preview_image);
             videoItem = itemView.findViewById(R.id.video_item);
-            playButton = itemView.findViewById(R.id.play_button);
             loadingBar = itemView.findViewById(R.id.loading_bar);
             GestureDetector gestureDetector;
 
@@ -138,10 +135,8 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
                 public boolean onSingleTapConfirmed(MotionEvent e) {
                     if (videoView.isPlaying()) {
                         videoView.pause();
-                        playButton.setVisibility(View.VISIBLE);
                     } else {
                         videoView.start();
-                        playButton.setVisibility(View.GONE);
                     }
                     return super.onSingleTapConfirmed(e);
                 }
@@ -182,7 +177,6 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
                 @Override
                 public void onClick(View view) {
                     previewImage.setVisibility(View.GONE);
-                    playButton.setVisibility(View.GONE);
                     videoView.setVisibility(View.VISIBLE);
                     loadingBar.setVisibility(View.VISIBLE);
                     Toast.makeText(context, "Loading", Toast.LENGTH_SHORT).show();
@@ -194,7 +188,6 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
                 @Override
                 public void onPrepared(MediaPlayer mediaPlayer) {
                     loadingBar.setVisibility(View.GONE);
-                    playButton.setVisibility(View.GONE);
                     videoView.requestFocus();
                     videoView.start();
                 }
