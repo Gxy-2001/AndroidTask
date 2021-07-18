@@ -15,8 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidFinal"
         android:usesCleartextTraffic="true">
-        <activity android:name=".VideoPlay" />
-        <activity android:name=".VideoListActivity" />
+        <activity android:name=".Video.VideoPlay" />
+        <activity android:name=".Video.VideoListActivity" />
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"

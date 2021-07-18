@@ -1,4 +1,4 @@
-package com.nju.androidfinal;
+package com.nju.androidfinal.Video;
 
 import java.util.List;
 

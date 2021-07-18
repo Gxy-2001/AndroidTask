@@ -1,4 +1,4 @@
-package com.nju.androidfinal;
+package com.nju.androidfinal.Video;
 
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.internal.LinkedTreeMap;
@@ -38,18 +38,6 @@ public class VideoInfo {
                 '}';
     }
 
-    public int getLikecount() {
-        return likecount;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
     public String getFeedurl() {
         return feedurl;
     }
@@ -58,7 +46,4 @@ public class VideoInfo {
         return id;
     }
 
-    public String getNickname() {
-        return nickname;
-    }
 }

@@ -12,6 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.gson.Gson;
+import com.nju.androidfinal.Video.API;
+import com.nju.androidfinal.Video.VideoAdapter;
+import com.nju.androidfinal.Video.VideoInfo;
+import com.nju.androidfinal.Video.VideoListActivity;
 
 import java.util.List;
 
@@ -31,17 +35,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("Build.VERSION.SDK_INT", "" + Build.VERSION.SDK_INT);
         //实现全屏
-        if (Build.VERSION.SDK_INT < 19) {
-            View v = this.getWindow().getDecorView();
-            v.setSystemUiVisibility(View.GONE);
-        } else {
-            View decorView = getWindow().getDecorView();
-            int t = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN;
-            Log.d("|||", "" + t);
-            decorView.setSystemUiVisibility(t);
-        }
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
         //viewPager2和它的Adapter

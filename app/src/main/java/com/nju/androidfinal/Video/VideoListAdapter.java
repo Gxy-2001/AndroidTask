@@ -1,4 +1,4 @@
-package com.nju.androidfinal;
+package com.nju.androidfinal.Video;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
+import com.nju.androidfinal.R;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.nju.androidfinal;
+package com.nju.androidfinal.Video;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
+import com.nju.androidfinal.R;
 
 import java.util.LinkedList;
 import java.util.List;
