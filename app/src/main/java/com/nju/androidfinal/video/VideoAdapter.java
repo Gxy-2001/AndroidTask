@@ -1,8 +1,10 @@
 package com.nju.androidfinal.video;
 
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -68,7 +71,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
         //如果点赞数大于一万以XX.Xw的形式展示
         float temp = (float) videoInfo.likecount / 10000;
         if (temp >= 1) {
-            videoViewHolder.likeCount.setText(String.format("%.1fw", temp));
+            videoViewHolder.likeCount.setText(temp + "w");
         } else {
             videoViewHolder.likeCount.setText(String.valueOf(videoInfo.likecount));
         }
@@ -89,8 +92,11 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
         ImageView previewImage;
         VideoView videoView;
         RelativeLayout videoItem;
+        //heart videoItem;
         View loadingBar;
         boolean like;
+
+        private heart myheart;
 
         @SuppressLint("ClickableViewAccessibility")
         VideoViewHolder(@NonNull View itemView) {
@@ -105,11 +111,14 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
             previewImage = itemView.findViewById(R.id.preview_image);
             videoItem = itemView.findViewById(R.id.video_item);
             loadingBar = itemView.findViewById(R.id.loading_bar);
-            GestureDetector gestureDetector;
 
+            myheart = itemView.findViewById(R.id.myheart);
+
+            GestureDetector gestureDetector;
             //添加单双击检测
             gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
                 //双击点赞
+                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                 @Override
                 public boolean onDoubleTap(MotionEvent e) {
                     if (like) {
@@ -123,6 +132,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
                         }
                         heartClickAnimation();
                     }
+                    myheart.start();
                     return super.onDoubleTap(e);
                 }
 
@@ -188,23 +198,22 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
                     videoView.start();
                 }
             });
-
+            //设置循环播放
+            videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mp.start();
+                    mp.setLooping(true);
+                }
+            });
         }
 
         //点击心形时出发的动画
         void heartClickAnimation() {
-//            ObjectAnimator animatorX = ObjectAnimator.ofFloat(heart, "scaleX", 1f, 2f);
-//            animatorX.setRepeatCount(1);
-//            animatorX.setInterpolator(new LinearInterpolator());
-//            animatorX.setRepeatMode(ValueAnimator.REVERSE);
-//            ObjectAnimator animatorY = ObjectAnimator.ofFloat(heart, "scaleY", 1f, 2f);
-//            animatorX.setDuration(500);
-//            animatorY.setRepeatCount(1);
-//            animatorY.setInterpolator(new LinearInterpolator());
-//            animatorY.setRepeatMode(ValueAnimator.REVERSE);
-//            animatorY.setDuration(500);
-//            animatorX.start();
-//            animatorY.start();
+            ObjectAnimator animator1 = ObjectAnimator.ofFloat(heart, "rotation", 0f, 360f);//旋转360度
+            animator1.setRepeatCount(1);//无限循环
+            animator1.setDuration(500);//设置持续时间
+            animator1.start();//动画开始
         }
 
     }
