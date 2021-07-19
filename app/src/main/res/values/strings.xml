@@ -23,4 +23,8 @@
     <string name="forget_pass_no_user">No register record</string>
     <string name="forget_pass_name_not_match">Name not match</string>
     <string name="forget_pass_result">Password:</string>
+    <string name="userCenter">User Center</string>
+    <string name="start_filming">Start Filming</string>
+    <string name="upload_your_video">Upload Your Video</string>
+    <string name="sentence">The world is thy oyster.</string>
 </resources>

@@ -50,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
             if (sharedIdValue != null && sharedIdValue.startsWith(passwordStr)) {
                 Toast.makeText(this, R.string.loginSuccess, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, PersonalCenter.class);
+                intent.putExtra("username", sharedIdValue.split(" ")[1]);
                 startActivity(intent);
                 finish();
             } else {
