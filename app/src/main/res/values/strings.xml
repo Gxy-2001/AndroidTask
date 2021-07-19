@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">AndroidFinal</string>
+    <string name="login">L o g i n</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="loginEmailHint">Please Enter Email</string>
+    <string name="loginPasswordHint">Please Enter Password</string>
+    <string name="loginButton">Login</string>
+    <string name="noAccount">No account? Register</string>
+    <string name="forgetPassword">Forget password? Find Back</string>
+    <string name="register">R e g i s t e r</string>
+    <string name="username">Username</string>
+    <string name="username_hint">Please enter username</string>
+    <string name="login_agree_licence">I agree with the license.</string>
+    <string name="login_cancel">CANCEL</string>
+    <string name="login_conform">CONFIRM</string>
+    <string name="Findback">Find back password</string>
+    <string name="loginSuccess">Login successfully</string>
+    <string name="loginFailure">Login unsuccessfully</string>
+    <string name="signup_fail_not_agree_licence">License not agreed</string>
+    <string name="signup_fail_data_invalid">Data is not completely filled</string>
+    <string name="signup_success">Sign up successfully</string>
+    <string name="forget_pass_no_user">No register record</string>
+    <string name="forget_pass_name_not_match">Name not match</string>
+    <string name="forget_pass_result">Password:</string>
 </resources>

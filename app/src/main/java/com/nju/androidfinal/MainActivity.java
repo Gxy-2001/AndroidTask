@@ -12,6 +12,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
+import com.nju.androidfinal.login.LoginActivity;
 import com.nju.androidfinal.video.API;
 import com.nju.androidfinal.video.Video;
 import com.nju.androidfinal.video.VideoAdapter;
@@ -78,9 +79,12 @@ public class MainActivity extends AppCompatActivity {
         me.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "我的页面：可以上传视频和查看自己上传的视频，登录注册收藏", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
         });
+
+
         listButton = findViewById(R.id.listrecycler);
 
         listButton.setOnClickListener(new View.OnClickListener() {
