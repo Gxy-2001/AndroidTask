@@ -15,7 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidFinal"
         android:usesCleartextTraffic="true">
-        <activity android:name=".video.VideoPlay" />
         <activity android:name=".videoList.VideoListActivity"
             android:screenOrientation="fullSensor"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>

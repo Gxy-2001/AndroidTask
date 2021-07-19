@@ -1,7 +1,5 @@
 package com.nju.androidfinal.video;
 
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.media.MediaPlayer;
@@ -10,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -39,7 +36,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
     @NonNull
     @Override
     public VideoViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.video_list_item, viewGroup, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.video_item, viewGroup, false);
         VideoViewHolder videoViewHolder = new VideoViewHolder(view);
         return videoViewHolder;
     }
@@ -178,7 +175,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
                     previewImage.setVisibility(View.GONE);
                     videoView.setVisibility(View.VISIBLE);
                     loadingBar.setVisibility(View.VISIBLE);
-                    Toast.makeText(context, "Loading", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "正在加载", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -196,18 +193,18 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
 
         //点击心形时出发的动画
         void heartClickAnimation() {
-            ObjectAnimator animatorX = ObjectAnimator.ofFloat(heart, "scaleX", 1f, 2f);
-            animatorX.setRepeatCount(1);
-            animatorX.setInterpolator(new LinearInterpolator());
-            animatorX.setRepeatMode(ValueAnimator.REVERSE);
-            ObjectAnimator animatorY = ObjectAnimator.ofFloat(heart, "scaleY", 1f, 2f);
-            animatorX.setDuration(500);
-            animatorY.setRepeatCount(1);
-            animatorY.setInterpolator(new LinearInterpolator());
-            animatorY.setRepeatMode(ValueAnimator.REVERSE);
-            animatorY.setDuration(500);
-            animatorX.start();
-            animatorY.start();
+//            ObjectAnimator animatorX = ObjectAnimator.ofFloat(heart, "scaleX", 1f, 2f);
+//            animatorX.setRepeatCount(1);
+//            animatorX.setInterpolator(new LinearInterpolator());
+//            animatorX.setRepeatMode(ValueAnimator.REVERSE);
+//            ObjectAnimator animatorY = ObjectAnimator.ofFloat(heart, "scaleY", 1f, 2f);
+//            animatorX.setDuration(500);
+//            animatorY.setRepeatCount(1);
+//            animatorY.setInterpolator(new LinearInterpolator());
+//            animatorY.setRepeatMode(ValueAnimator.REVERSE);
+//            animatorY.setDuration(500);
+//            animatorX.start();
+//            animatorY.start();
         }
 
     }

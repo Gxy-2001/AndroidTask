@@ -2,6 +2,7 @@ package com.nju.androidfinal;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -10,11 +11,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.gson.Gson;
+import com.google.gson.internal.LinkedTreeMap;
 import com.nju.androidfinal.video.API;
 import com.nju.androidfinal.video.Video;
 import com.nju.androidfinal.video.VideoAdapter;
 import com.nju.androidfinal.videoList.VideoListActivity;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -33,13 +36,43 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
+        Intent intent = getIntent();
+        String list = null, feedurl = null;
+        try {
+            list = intent.getStringExtra("videoInfos");
+            feedurl = intent.getStringExtra("feedurl");
+        } catch (Exception e) {
+            Log.d("Main:intent无内容", e.getMessage());
 
-        videoPager = findViewById(R.id.video_pager);
-        videoAdapter = new VideoAdapter(this);
-        setData();
-        videoPager.setAdapter(videoAdapter);
+        }
+        if (list != null && list.length() != 0) {
+            Gson gson = new Gson();
+            List<LinkedTreeMap> maps = gson.fromJson(list, List.class);
+            videoInfoList = new LinkedList<>();
+            int flag = 0;
+            if (maps != null) {
+                for (LinkedTreeMap map : maps) {
+                    if (feedurl.equals(map.get("feedurl"))) {
+                        flag = 1;
+                    }
+                    if (flag == 1) {
+                        Video videoInfo = new Video(map);
+                        videoInfoList.add(videoInfo);
+                    }
+                }
+            }
+            videoPager = findViewById(R.id.video_pager);
+            videoAdapter = new VideoAdapter(this);
+            videoPager.setAdapter(videoAdapter);
+            videoAdapter.setVideoInfoList(videoInfoList);
+        } else {
+            videoPager = findViewById(R.id.video_pager);
+            videoAdapter = new VideoAdapter(this);
+            setData();
+            videoPager.setAdapter(videoAdapter);
+        }
+
 
         me = findViewById(R.id.me);
         me.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 String videoinfolist = gson.toJson(videoInfoList);
                 intent.putExtra("videoInfos", videoinfolist);
                 startActivity(intent);
+
             }
         });
 
@@ -91,5 +125,10 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "setDate()请求数据失败", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        MainActivity.this.finish();
     }
 }

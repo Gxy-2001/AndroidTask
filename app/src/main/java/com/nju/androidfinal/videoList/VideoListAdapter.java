@@ -14,9 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
+import com.nju.androidfinal.MainActivity;
 import com.nju.androidfinal.R;
 import com.nju.androidfinal.video.Video;
-import com.nju.androidfinal.video.VideoPlay;
 
 import java.util.List;
 
@@ -34,7 +34,7 @@ public class VideoListAdapter extends RecyclerView.Adapter<VideoListAdapter.Vide
     @Override
     public VideoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_list, parent, false);
+                .inflate(R.layout.list_item, parent, false);
         VideoViewHolder videoViewHolder = new VideoViewHolder(view);
         return videoViewHolder;
     }
@@ -54,12 +54,13 @@ public class VideoListAdapter extends RecyclerView.Adapter<VideoListAdapter.Vide
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, VideoPlay.class);
+                Intent intent = new Intent(context, MainActivity.class);
                 Gson gson = new Gson();
                 String videoinfolist = gson.toJson(videoInfos);
                 intent.putExtra("videoInfos", videoinfolist);
                 intent.putExtra("feedurl", videoInfo.getFeedurl());
                 context.startActivity(intent);
+
             }
         });
     }
