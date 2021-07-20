@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidFinal"
         android:usesCleartextTraffic="true">
-        <activity android:name=".upload.UploadActivity"></activity>
+        <activity android:name=".upload.CommitActivity"></activity>
+        <activity android:name=".upload.UploadActivity" />
         <activity android:name=".upload.FilmActivity" />
         <activity android:name=".PersonalCenter" />
         <activity android:name=".login.FindbackActivity" />

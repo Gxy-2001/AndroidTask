@@ -31,4 +31,10 @@
     <string name="record">record</string>
     <string name="begin">begin</string>
     <string name="end">end</string>
+    <string name="uploadHint">Select the video you want to upload</string>
+    <string name="uploadButton">upload</string>
+    <string name="editboxHint">Please Enter description.</string>
+    <string name="your_video">Your video:</string>
+    <string name="newNameHint">Please enter new name.</string>
+    <string name="new_name">New name</string>
 </resources>

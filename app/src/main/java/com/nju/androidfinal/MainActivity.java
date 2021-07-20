@@ -15,7 +15,6 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
 import com.nju.androidfinal.login.LoginActivity;
-import com.nju.androidfinal.video.API;
 import com.nju.androidfinal.video.Video;
 import com.nju.androidfinal.video.VideoAdapter;
 import com.nju.androidfinal.videoList.VideoListActivity;

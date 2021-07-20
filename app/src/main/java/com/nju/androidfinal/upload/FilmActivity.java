@@ -36,7 +36,7 @@ public class FilmActivity extends AppCompatActivity {
     }
 
     //视频录制与暂停的方法
-    public void startMediaRecorder() {
+    private void startMediaRecorder() {
         if (!isStartAndStop) {
             if (mediaRecorder == null) {
                 mediaRecorder = new MediaRecorder();//实例化媒体录制器
