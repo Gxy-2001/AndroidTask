@@ -16,6 +16,8 @@ public class Video {
     public int likecount;
     @SerializedName("avatar")
     public String avatar;
+    @SerializedName("thumbnails")
+    public String cover;
 
     public Video(LinkedTreeMap map) {
         this.id = (String) map.get("id");
@@ -24,6 +26,7 @@ public class Video {
         this.description = (String) map.get("description");
         this.likecount = ((Double) map.get("likecount")).intValue();
         this.avatar = (String) map.get("avatar");
+        this.cover = (String) map.get("thumbnails");
     }
 
     @Override
