@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         SharedPreferences sharedPreferences = this.getSharedPreferences("user", Context.MODE_PRIVATE);
+        SharedPreferences loginState = this.getSharedPreferences("userlogin",Context.MODE_PRIVATE);
 
         login.setOnClickListener(v -> {
             String emailStr = email.getText().toString();
@@ -50,7 +51,14 @@ public class LoginActivity extends AppCompatActivity {
             if (sharedIdValue != null && sharedIdValue.startsWith(passwordStr)) {
                 Toast.makeText(this, R.string.loginSuccess, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, PersonalCenter.class);
-                intent.putExtra("username", sharedIdValue.split(" ")[1]);
+                String username = sharedIdValue.split(" ")[1];
+                intent.putExtra("username", username);
+
+                SharedPreferences.Editor editor = loginState.edit();
+                editor.putString("loginState",username);
+                editor.apply();
+                editor.commit();
+
                 startActivity(intent);
                 finish();
             } else {

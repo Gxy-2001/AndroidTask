@@ -15,8 +15,6 @@ import com.nju.androidfinal.R;
 
 public class FindbackActivity extends AppCompatActivity {
 
-    private String TAG = "App";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,10 +36,8 @@ public class FindbackActivity extends AppCompatActivity {
             String sharedIdValue = sharedPreferences.getString(email, null);
 
             if (sharedIdValue == null) {
-                Log.d(TAG,"1");
                 Toast.makeText(this, R.string.forget_pass_no_user, Toast.LENGTH_SHORT).show();
             } else if (!sharedIdValue.split(" ")[1].equals(name)) {
-                Log.d(TAG,"2");
                 Toast.makeText(this, R.string.forget_pass_name_not_match, Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(

@@ -27,4 +27,8 @@
     <string name="start_filming">Start Filming</string>
     <string name="upload_your_video">Upload Your Video</string>
     <string name="sentence">The world is thy oyster.</string>
+    <string name="logout">logout</string>
+    <string name="record">record</string>
+    <string name="begin">begin</string>
+    <string name="end">end</string>
 </resources>

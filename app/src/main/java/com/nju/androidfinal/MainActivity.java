@@ -1,6 +1,8 @@
 package com.nju.androidfinal;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -76,10 +78,20 @@ public class MainActivity extends AppCompatActivity {
 
 
         me = findViewById(R.id.me);
+        SharedPreferences sharedPreferences = this.getSharedPreferences("userlogin", Context.MODE_PRIVATE);
+
         me.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                String loginUser = sharedPreferences.getString("loginState", null);
+                Intent intent;
+
+                if (loginUser == null) {
+                    intent = new Intent(MainActivity.this, LoginActivity.class);
+                } else {
+                    intent = new Intent(MainActivity.this, PersonalCenter.class);
+                    intent.putExtra("username", loginUser);
+                }
                 startActivity(intent);
             }
         });
@@ -101,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
 
     private void setData() {
         Retrofit retrofit = new Retrofit.Builder()
@@ -134,5 +145,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         MainActivity.this.finish();
+    }
+
+    @Override
+    public void onStop() {
+        SharedPreferences sharedPreferences = this.getSharedPreferences("userlogin", Context.MODE_PRIVATE);
+        String loginUser = sharedPreferences.getString("loginState", null);
+        if (loginUser != null) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.apply();
+            editor.commit();
+        }
+        super.onStop();
     }
 }
