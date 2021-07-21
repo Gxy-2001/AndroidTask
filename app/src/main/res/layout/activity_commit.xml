@@ -7,29 +7,32 @@
     android:orientation="vertical"
     tools:context=".upload.CommitActivity">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"
-        android:background="@color/black"
-        android:src="@drawable/icon" />
-
     <TextView
         android:id="@+id/video"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="10dp"
         android:layout_weight="1"
         android:text="@string/your_video"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold" />
 
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_weight="30" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
         android:layout_marginTop="30dp"
         android:layout_weight="1"
         android:text="@string/new_name"
@@ -53,9 +56,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
         android:layout_marginTop="30dp"
         android:layout_weight="1"
-        android:text="@string/password"
+        android:text="@string/description"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -67,9 +71,9 @@
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
         android:layout_weight="3"
-        android:hint="@string/editboxHint"
         android:background="@drawable/ic_editbox"
         android:gravity="start|top"
+        android:hint="@string/editboxHint"
         android:textColor="#1e1e1e" />
 
     <Button
