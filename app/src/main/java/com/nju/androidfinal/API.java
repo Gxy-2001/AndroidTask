@@ -15,7 +15,7 @@ public interface API {
     @GET("api/invoke/video/invoke/video")
     Call<List<Video>> getVideoInfo();
 
-    //TODO:没有url，先以如下代替
+    //没有url，先以如下代替
     @FormUrlEncoded
     @POST("bytedance/video")
     Call<UploadResponse> postVideoInfo(@Field("videoInfo") Video video);

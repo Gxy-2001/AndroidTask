@@ -26,14 +26,14 @@ public class PersonalCenter extends AppCompatActivity {
         Button film = findViewById(R.id.startFilming);
         film.setOnClickListener(v -> {
             Intent intent = new Intent(PersonalCenter.this, FilmActivity.class);
-            intent.putExtra("name",username);
+            intent.putExtra("name", username);
             startActivity(intent);
         });
 
         Button upload = findViewById(R.id.upload);
         upload.setOnClickListener(v -> {
             Intent intent = new Intent(PersonalCenter.this, UploadActivity.class);
-            intent.putExtra("name",username);
+            intent.putExtra("name", username);
             startActivity(intent);
         });
 
@@ -47,6 +47,4 @@ public class PersonalCenter extends AppCompatActivity {
             finish();
         });
     }
-
-
 }

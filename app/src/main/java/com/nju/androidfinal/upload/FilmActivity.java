@@ -1,5 +1,6 @@
 package com.nju.androidfinal.upload;
 
+import android.hardware.Camera;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Environment;
@@ -42,11 +43,18 @@ public class FilmActivity extends AppCompatActivity {
                 mediaRecorder = new MediaRecorder();//实例化媒体录制器
             }
             mediaRecorder.reset();
+
+            Camera camera = Camera.open(Camera.CameraInfo.CAMERA_FACING_BACK);
+            camera.setDisplayOrientation(90);
+            camera.unlock();
+            mediaRecorder.setCamera(camera);
+
             mediaRecorder.setVideoSource(MediaRecorder.VideoSource.CAMERA); //从照相机采集视频
             mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);//设置麦克风
             mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);//设置保存的格式
             mediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H263);//设置编码格式
             mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+            mediaRecorder.setOrientationHint(90);
 
             String sdPath = Environment.getExternalStorageDirectory().getAbsolutePath();//设置保存的路径
             mediaRecorder.setOutputFile(sdPath + "/DCIM/" + System.currentTimeMillis() + ".mp4");

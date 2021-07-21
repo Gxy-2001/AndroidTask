@@ -1,12 +1,10 @@
 package com.nju.androidfinal.upload;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Window;
 import android.widget.Button;
@@ -16,25 +14,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
-import com.nju.androidfinal.API;
 import com.nju.androidfinal.R;
-import com.nju.androidfinal.video.Video;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CommitActivity extends AppCompatActivity {
 
@@ -62,34 +53,64 @@ public class CommitActivity extends AppCompatActivity {
         videoView.setVideoPath(filepath);
         videoView.setMediaController(new MediaController(this));
 
-        String newNameStr = newName.getText().toString();
-        String description = editText.getText().toString();
+        final String[] newNameStr = {""};
+        newName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                newNameStr[0] = s.toString();
+            }
+        });
+
+
+        final String[] description = {""};
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                description[0] = s.toString();
+            }
+        });
+
         String avatarPath = "https://upload.jianshu.io/users/upload_avatars/17506620/c7e69c2d-5b9a-423f-915d-a6d41f0e26de.jpeg?imageMogr2/auto-orient/strip|imageView2/1/w/240/h/240";
         String coverPath = "http://8.136.101.204/v/%E9%A5%BA%E5%AD%90%E7%9C%9F%E8%90%8C.jpg";
 
-        LinkedTreeMap<String, Object> map = new LinkedTreeMap<>();
-        map.put("_id", nickname);
-        map.put("feedurl", filepath);
-        map.put("nickname", newNameStr);
-        map.put("description", description);
-        map.put("likecount", 0);
-        map.put("avatar", avatarPath);
-        map.put("thumbnails", coverPath);
-        Gson gson = new Gson();
-        String videoInfo = gson.toJson(map);
+
 
 //        UploadResponse uploadResponse = new UploadResponse();
 //        uploadResponse.video = new Video(map);
 
         Button uploadButton = findViewById(R.id.commitButton);
         uploadButton.setOnClickListener(v -> {
+
+            LinkedTreeMap<String, Object> map = new LinkedTreeMap<>();
+            map.put("_id", nickname);
+            map.put("feedurl", filepath);
+            map.put("nickname", newNameStr[0]);
+            map.put("description", description[0]);
+            map.put("likecount", 0);
+            map.put("avatar", avatarPath);
+            map.put("thumbnails", coverPath);
+            Gson gson = new Gson();
+            String videoInfo = gson.toJson(map);
+
             Log.d("videoInfo", videoInfo);
             //用保存在本地来模拟
             if (videoInfo != null) {
                 try {
                     String filename = "/storage/emulated/0/Documents/" + originalName + ".json";
                     File file = new File(filename);
-                    OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(file, true), StandardCharsets.UTF_8);
+                    OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
                     osw.write(videoInfo);
                     osw.flush();
                     osw.close();

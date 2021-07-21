@@ -29,16 +29,14 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
-    private ViewPager2 videoPager;
     private VideoAdapter videoAdapter;
-    private TextView listButton;
-    private TextView me;
     private List<Video> videoInfoList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Intent intent = getIntent();
         String list = null, feedurl = null;
         try {
@@ -48,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
             Log.d("Main:intent无内容", e.getMessage());
 
         }
+
+        ViewPager2 videoPager;
         if (list != null && list.length() != 0) {
             Gson gson = new Gson();
             List<LinkedTreeMap> maps = gson.fromJson(list, List.class);
@@ -76,38 +76,29 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        me = findViewById(R.id.me);
+        TextView me = findViewById(R.id.me);
         SharedPreferences sharedPreferences = this.getSharedPreferences("userlogin", Context.MODE_PRIVATE);
+        me.setOnClickListener(view -> {
+            String loginUser = sharedPreferences.getString("loginState", null);
+            Intent intent12;
 
-        me.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String loginUser = sharedPreferences.getString("loginState", null);
-                Intent intent;
-
-                if (loginUser == null) {
-                    intent = new Intent(MainActivity.this, LoginActivity.class);
-                } else {
-                    intent = new Intent(MainActivity.this, PersonalCenter.class);
-                    intent.putExtra("username", loginUser);
-                }
-                startActivity(intent);
+            if (loginUser == null) {
+                intent12 = new Intent(MainActivity.this, LoginActivity.class);
+            } else {
+                intent12 = new Intent(MainActivity.this, PersonalCenter.class);
+                intent12.putExtra("username", loginUser);
             }
+            startActivity(intent12);
         });
 
 
-        listButton = findViewById(R.id.listrecycler);
-
-        listButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, VideoListActivity.class);
-                Gson gson = new Gson();
-                String videoinfolist = gson.toJson(videoInfoList);
-                intent.putExtra("videoInfos", videoinfolist);
-                startActivity(intent);
-
-            }
+        TextView listButton = findViewById(R.id.listrecycler);
+        listButton.setOnClickListener(v -> {
+            Intent intent1 = new Intent(MainActivity.this, VideoListActivity.class);
+            Gson gson = new Gson();
+            String videoinfolist = gson.toJson(videoInfoList);
+            intent1.putExtra("videoInfos", videoinfolist);
+            startActivity(intent1);
         });
 
 
@@ -147,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onStop() {
+    public void onDestroy() {
         SharedPreferences sharedPreferences = this.getSharedPreferences("userlogin", Context.MODE_PRIVATE);
         String loginUser = sharedPreferences.getString("loginState", null);
         if (loginUser != null) {
@@ -156,6 +147,6 @@ public class MainActivity extends AppCompatActivity {
             editor.apply();
             editor.commit();
         }
-        super.onStop();
+        super.onDestroy();
     }
 }
